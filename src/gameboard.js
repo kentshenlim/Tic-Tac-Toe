@@ -1,8 +1,25 @@
 const gameBoard = (() => {
   const len = 3;
   const matrix = Array.from({ length: len }, () => new Array(len).fill('.'));
+  let isCrossTurn = true;
 
   // Methods declaration
+  function logGrid() {
+    console.log(matrix);
+  }
+
+  function pickGrid(r, c, mat = matrix) {
+    if (r < 0 || r >= len || c < 0 || c >= len) {
+      console.log('Row number or col number out of range!');
+    } else if (mat[r][c] !== '.') {
+      console.log('Grid chosen has been occupied!');
+    } else {
+      const ref = mat;
+      ref[r][c] = isCrossTurn ? 'X' : 'O';
+      isCrossTurn = !isCrossTurn;
+    }
+  }
+
   function getResult(mat) {
     for (let i = 0; i < len; i += 1) {
       // Row-wise
@@ -38,7 +55,7 @@ const gameBoard = (() => {
     return false;
   }
 
-  return { getResult };
+  return { logGrid, pickGrid, getResult };
 })();
 
 export default gameBoard;
