@@ -1,24 +1,41 @@
 const gameBoard = (() => {
   const len = 3;
   const matrix = Array.from({ length: len }, () => new Array(len).fill('.'));
-  let isCrossTurn = true;
+  const isCrossTurn = true;
 
   // Methods declaration
   function logGrid() {
     console.log(matrix);
   }
 
-  function pickGrid(r, c, mat = matrix) {
+  function getSymbol(mat) {
+    // In case symbol not provided in pickGrid
+    let xCount = 0;
+    let oCount = 0;
+    mat.array.forEach((row) => {
+      row.forEach((item) => {
+        if (item === 'X') xCount += 1;
+        else oCount += 1;
+      });
+    });
+    return xCount === oCount ? 'X' : 'O';
+  }
+
+  function pickGrid(r, c, symb, mat = matrix) {
     if (r < 0 || r >= len || c < 0 || c >= len) {
       console.log('Row number or col number out of range!');
       return false;
     } if (mat[r][c] !== '.') {
       console.log('Grid chosen has been occupied!');
       return false;
+    } if (symb !== undefined && (symb !== 'X' || symb !== 'O')) {
+      console.log('Player symbol either "X" or "O" only!');
+      return false;
     }
     const ref = mat;
-    ref[r][c] = isCrossTurn ? 'X' : 'O';
-    isCrossTurn = !isCrossTurn;
+    // eslint-disable-next-line no-param-reassign
+    if (symb === undefined) symb = getSymbol(ref);
+    ref[r][c] = symb;
     return true;
   }
 
