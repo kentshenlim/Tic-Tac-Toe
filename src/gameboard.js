@@ -1,11 +1,11 @@
 const gameBoard = (() => {
   const len = 3;
   const matrix = Array.from({ length: len }, () => new Array(len).fill('.'));
-  const isCrossTurn = true;
 
-  // Methods declaration
-  function logGrid() {
+  // Method declaration
+  function getGrid() {
     console.log(matrix);
+    return matrix;
   }
 
   function getSymbol(mat) {
@@ -74,7 +74,7 @@ const gameBoard = (() => {
     return false;
   }
 
-  return { logGrid, pickGrid, getResult };
+  return { getGrid, pickGrid, getResult };
 })();
 
 export default gameBoard;

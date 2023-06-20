@@ -1,5 +1,7 @@
-import gameBoard from './gameBoard';
+/* eslint-disable import/extensions */
+import gameBoard from './gameBoard.js';
 
-const flow = (() => {
-
+const logic = (() => {
+  // Logic variables
+  const isCrossTurn = true;
 })();
