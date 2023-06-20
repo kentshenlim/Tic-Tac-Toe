@@ -11,13 +11,15 @@ const gameBoard = (() => {
   function pickGrid(r, c, mat = matrix) {
     if (r < 0 || r >= len || c < 0 || c >= len) {
       console.log('Row number or col number out of range!');
-    } else if (mat[r][c] !== '.') {
+      return false;
+    } if (mat[r][c] !== '.') {
       console.log('Grid chosen has been occupied!');
-    } else {
-      const ref = mat;
-      ref[r][c] = isCrossTurn ? 'X' : 'O';
-      isCrossTurn = !isCrossTurn;
+      return false;
     }
+    const ref = mat;
+    ref[r][c] = isCrossTurn ? 'X' : 'O';
+    isCrossTurn = !isCrossTurn;
+    return true;
   }
 
   function getResult(mat) {
