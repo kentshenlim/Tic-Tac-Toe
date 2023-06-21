@@ -11,7 +11,8 @@ const logic = (() => {
     isCrossTurn = !isCrossTurn;
     const res = gameBoard.getResult();
     if (res) {
-      console.log(`${res} won!`);
+      console.log(`%c${res} won!`, 'color: greenyellow;');
+      pubSub.publish('gameEnd', null);
     }
   }
 

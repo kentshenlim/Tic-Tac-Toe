@@ -30,17 +30,17 @@ const gameBoard = (() => {
 
   function pickGrid(r, c, symb, mat = matrix) {
     if (r < 0 || r >= len || c < 0 || c >= len) {
-      console.log('Row number or col number out of range!');
+      console.log('%cRow number or col number out of range!', 'color: red;');
       return false;
     } if (mat[r][c] !== '.') {
-      console.log('Grid chosen has been occupied!');
+      console.log('%cGrid chosen has been occupied!', 'color: red;');
       return false;
     } if (symb !== undefined) {
-      if (symb !== 'X' || symb !== 'O') {
-        console.log('Player symbol either "X" or "O" only!');
+      if (symb !== 'X' && symb !== 'O') {
+        console.log('%cPlayer symbol either "X" or "O" only!', 'color:red;');
         return false;
       } if (symb !== getSymbol(mat)) {
-        console.log('Not your turn!');
+        console.log('%cNot your turn!', 'color: red;');
         return false;
       }
     }
