@@ -1,21 +1,28 @@
+/* eslint-disable import/extensions */
+import pubSub from './pubSub.js';
+
 const gameBoard = (() => {
   const len = 3;
   const matrix = Array.from({ length: len }, () => new Array(len).fill('.'));
 
   // Method declaration
   function getGrid() {
-    console.log(matrix);
+    let outputStr = '';
+    matrix.forEach((row) => {
+      outputStr = `${outputStr}${JSON.stringify(row)}\n`;
+    });
+    console.log(outputStr);
     return matrix;
   }
 
-  function getSymbol(mat) {
+  function getSymbol(mat = matrix) {
     // In case symbol not provided in pickGrid
     let xCount = 0;
     let oCount = 0;
-    mat.array.forEach((row) => {
+    mat.forEach((row) => {
       row.forEach((item) => {
         if (item === 'X') xCount += 1;
-        else oCount += 1;
+        else if (item === 'O') oCount += 1;
       });
     });
     return xCount === oCount ? 'X' : 'O';
@@ -41,10 +48,12 @@ const gameBoard = (() => {
     // eslint-disable-next-line no-param-reassign
     if (symb === undefined) symb = getSymbol(ref);
     ref[r][c] = symb;
+    pubSub.publish('afterMove', null);
+    getGrid();
     return true;
   }
 
-  function getResult(mat) {
+  function getResult(mat = matrix) {
     for (let i = 0; i < len; i += 1) {
       // Row-wise
       const rowRef = mat[i][0];
@@ -79,7 +88,7 @@ const gameBoard = (() => {
     return false;
   }
 
-  function resetGrid(mat) {
+  function resetGrid(mat = matrix) {
     const ref = mat;
     for (let r = 0; r < len; r += 1) {
       for (let c = 0; c < len; c += 1) {

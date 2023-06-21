@@ -9,7 +9,7 @@ const pubSub = (() => {
 
   function publish(event, data) {
     if (map[event]) {
-      map[event].array.forEach((fn) => {
+      map[event].forEach((fn) => {
         fn(data);
       });
     }
