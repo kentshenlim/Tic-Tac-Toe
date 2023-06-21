@@ -63,6 +63,11 @@ const gameBoard = (() => {
     return false;
   }
 
+  function handleResult() {
+    const res = getResult();
+    if (res) pubSub.publish('gameEnd', res);
+  }
+
   function pickGrid(r, c, symb) {
     if (r < 0 || r >= len || c < 0 || c >= len) {
       console.log('%cRow number or col number out of range!', 'color: red;');
