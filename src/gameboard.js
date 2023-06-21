@@ -28,30 +28,6 @@ const gameBoard = (() => {
     return xCount === oCount ? 'X' : 'O';
   }
 
-  function pickGrid(r, c, symb) {
-    if (r < 0 || r >= len || c < 0 || c >= len) {
-      console.log('%cRow number or col number out of range!', 'color: red;');
-      return false;
-    } if (matrix[r][c] !== '.') {
-      console.log('%cGrid chosen has been occupied!', 'color: red;');
-      return false;
-    } if (symb !== undefined) {
-      if (symb !== 'X' && symb !== 'O') {
-        console.log('%cPlayer symbol either "X" or "O" only!', 'color:red;');
-        return false;
-      } if (symb !== getSymbol(matrix)) {
-        console.log('%cNot your turn!', 'color: red;');
-        return false;
-      }
-    }
-    // eslint-disable-next-line no-param-reassign
-    if (symb === undefined) symb = getSymbol(matrix);
-    matrix[r][c] = symb;
-    getGrid();
-    pubSub.publish('afterMove', null);
-    return true;
-  }
-
   function getResult() {
     for (let i = 0; i < len; i += 1) {
       // Row-wise
@@ -85,6 +61,33 @@ const gameBoard = (() => {
       }
     }
     return false;
+  }
+
+  function pickGrid(r, c, symb) {
+    if (r < 0 || r >= len || c < 0 || c >= len) {
+      console.log('%cRow number or col number out of range!', 'color: red;');
+      return false;
+    }
+    if (matrix[r][c] !== '.') {
+      console.log('%cGrid chosen has been occupied!', 'color: red;');
+      return false;
+    }
+    if (symb !== undefined) {
+      if (symb !== 'X' && symb !== 'O') {
+        console.log('%cPlayer symbol either "X" or "O" only!', 'color:red;');
+        return false;
+      }
+      if (symb !== getSymbol(matrix)) {
+        console.log('%cNot your turn!', 'color: red;');
+        return false;
+      }
+    }
+    // eslint-disable-next-line no-param-reassign
+    if (symb === undefined) symb = getSymbol(matrix);
+    matrix[r][c] = symb;
+    getGrid();
+    pubSub.publish('afterMove', null);
+    return true;
   }
 
   function resetGrid() {

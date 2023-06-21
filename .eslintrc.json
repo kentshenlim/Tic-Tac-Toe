@@ -10,6 +10,7 @@
   },
   "rules": {
     "linebreak-style": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "no-console": "off"
   }
 }
