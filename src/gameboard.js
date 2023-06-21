@@ -79,7 +79,18 @@ const gameBoard = (() => {
     return false;
   }
 
-  return { getGrid, pickGrid, getResult };
+  function resetGrid(mat) {
+    const ref = mat;
+    for (let r = 0; r < len; r += 1) {
+      for (let c = 0; c < len; c += 1) {
+        ref[r][c] = 0;
+      }
+    }
+  }
+
+  return {
+    getGrid, pickGrid, getResult, resetGrid,
+  };
 })();
 
 export default gameBoard;
