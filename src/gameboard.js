@@ -28,9 +28,14 @@ const gameBoard = (() => {
     } if (mat[r][c] !== '.') {
       console.log('Grid chosen has been occupied!');
       return false;
-    } if (symb !== undefined && (symb !== 'X' || symb !== 'O')) {
-      console.log('Player symbol either "X" or "O" only!');
-      return false;
+    } if (symb !== undefined) {
+      if (symb !== 'X' || symb !== 'O') {
+        console.log('Player symbol either "X" or "O" only!');
+        return false;
+      } if (symb !== getSymbol(mat)) {
+        console.log('Not your turn!');
+        return false;
+      }
     }
     const ref = mat;
     // eslint-disable-next-line no-param-reassign
