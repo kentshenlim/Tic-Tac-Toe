@@ -15,7 +15,7 @@ const gameBoard = (() => {
     return matrix;
   }
 
-  function getSymbol(mat = matrix) {
+  function getSymbol(mat) {
     // In case symbol not provided in pickGrid
     let xCount = 0;
     let oCount = 0;
@@ -28,74 +28,75 @@ const gameBoard = (() => {
     return xCount === oCount ? 'X' : 'O';
   }
 
-  function pickGrid(r, c, symb, mat = matrix) {
+  function pickGrid(r, c, symb) {
     if (r < 0 || r >= len || c < 0 || c >= len) {
       console.log('%cRow number or col number out of range!', 'color: red;');
       return false;
-    } if (mat[r][c] !== '.') {
+    } if (matrix[r][c] !== '.') {
       console.log('%cGrid chosen has been occupied!', 'color: red;');
       return false;
     } if (symb !== undefined) {
       if (symb !== 'X' && symb !== 'O') {
         console.log('%cPlayer symbol either "X" or "O" only!', 'color:red;');
         return false;
-      } if (symb !== getSymbol(mat)) {
+      } if (symb !== getSymbol(matrix)) {
         console.log('%cNot your turn!', 'color: red;');
         return false;
       }
     }
-    const ref = mat;
     // eslint-disable-next-line no-param-reassign
-    if (symb === undefined) symb = getSymbol(ref);
-    ref[r][c] = symb;
-    pubSub.publish('afterMove', null);
+    if (symb === undefined) symb = getSymbol(matrix);
+    matrix[r][c] = symb;
     getGrid();
+    pubSub.publish('afterMove', null);
     return true;
   }
 
-  function getResult(mat = matrix) {
+  function getResult() {
     for (let i = 0; i < len; i += 1) {
       // Row-wise
-      const rowRef = mat[i][0];
+      const rowRef = matrix[i][0];
       if (rowRef !== '.') {
         for (let c = 1; c < len; c += 1) {
-          if (mat[i][c] !== rowRef) break;
+          if (matrix[i][c] !== rowRef) break;
           if (c === len - 1) return rowRef;
         }
       }
       // Col-wise
-      const colRef = mat[0][i];
+      const colRef = matrix[0][i];
       if (colRef !== '.') {
         for (let r = 1; r < len; r += 1) {
-          if (mat[r][i] !== colRef) break;
+          if (matrix[r][i] !== colRef) break;
           if (r === len - 1) return colRef;
         }
       }
     }
     // Diagonals
-    if (mat[0][0] !== '.') {
+    if (matrix[0][0] !== '.') {
       for (let i = 1; i < len; i += 1) {
-        if (mat[i][i] !== mat[0][0]) break;
-        if (i === len - 1) return mat[0][0];
+        if (matrix[i][i] !== matrix[0][0]) break;
+        if (i === len - 1) return matrix[0][0];
       }
     }
-    if (mat[0][len - 1] !== '.') {
+    if (matrix[0][len - 1] !== '.') {
       for (let i = 1; i < len; i += 1) {
-        if (mat[i][len - 1 - i] !== mat[0][len - 1]) break;
-        if (i === len - 1) return mat[0][len - 1];
+        if (matrix[i][len - 1 - i] !== matrix[0][len - 1]) break;
+        if (i === len - 1) return matrix[0][len - 1];
       }
     }
     return false;
   }
 
-  function resetGrid(mat = matrix) {
-    const ref = mat;
+  function resetGrid() {
     for (let r = 0; r < len; r += 1) {
       for (let c = 0; c < len; c += 1) {
-        ref[r][c] = 0;
+        matrix[r][c] = 0;
       }
     }
   }
+
+  // Event subscription
+  pubSub.subscribe('gameEnd', resetGrid);
 
   return {
     getGrid, pickGrid, getResult, resetGrid,
