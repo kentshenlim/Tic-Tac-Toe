@@ -1,6 +1,5 @@
-/* eslint-disable import/extensions */
-import gameBoard from './gameBoard.js';
-import logic from './logic.js';
+import gameBoard from './gameBoard';
+import logic from './logic';
 
 gameBoard.getGrid();
 
