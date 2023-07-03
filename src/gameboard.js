@@ -10,7 +10,6 @@ const gameBoard = (() => {
     boardMat.forEach((row) => {
       outputStr = `${outputStr}${JSON.stringify(row)}\n`;
     });
-    console.log(outputStr);
     return boardMat;
   }
 
