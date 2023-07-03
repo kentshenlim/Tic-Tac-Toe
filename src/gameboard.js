@@ -49,7 +49,7 @@ const gameBoard = (() => {
     return false;
   }
 
-  function pickGrid(mat, r, c, symb) { // PURE, PASSED
+  function pickGrid(mat, r, c, symb) { // IMPURE, PASSED WITH MOCK PUBSUB
     if (r < 0 || r >= len || c < 0 || c >= len) return false;
     if (mat[r][c] !== '.') return false;
     const newMat = new Array(len);
@@ -57,6 +57,7 @@ const gameBoard = (() => {
       newMat[i] = mat[i].slice();
     }
     newMat[r][c] = symb;
+    pubSub.emit('gridPicked', [r, c]);
     return newMat;
   }
 
