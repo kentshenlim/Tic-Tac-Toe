@@ -14,7 +14,7 @@ const gameBoard = (() => {
     return boardMat;
   }
 
-  function getResult(mat) { // PURE
+  function getResult(mat) { // PURE, PASSED
     for (let i = 0; i < len; i += 1) {
       // Row-wise
       const rowRef = mat[i][0];
@@ -54,14 +54,15 @@ const gameBoard = (() => {
     if (res) pubSub.publish('gameEnd', res);
   }
 
-  function pickGrid(mat, r, c, symb) {
-    const n = mat.length;
-    if (r < 0 || r >= n || c < 0 || c >= n) return false;
-    if (boardMat[r][c] !== '.') return false;
-    boardMat[r][c] = symb;
-    getGrid();
-    pubSub.publish('afterMove', null);
-    return true;
+  function pickGrid(mat, r, c, symb) { // PURE
+    if (r < 0 || r >= len || c < 0 || c >= len) return false;
+    if (mat[r][c] !== '.') return false;
+    const newMat = new Array(len);
+    for (let i = 0; i < len; i += 1) {
+      newMat[i] = mat[i].slice();
+    }
+    newMat[r][c] = symb;
+    return newMat;
   }
 
   function resetGrid() {
