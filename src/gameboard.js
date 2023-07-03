@@ -5,7 +5,7 @@ const gameBoard = (() => {
   const boardMat = Array.from({ length: len }, () => new Array(len).fill('.'));
 
   // Method declaration
-  function getGrid() {
+  function exposeGrid() { // IMPURE, UNTESTED
     let outputStr = '';
     boardMat.forEach((row) => {
       outputStr = `${outputStr}${JSON.stringify(row)}\n`;
@@ -60,7 +60,7 @@ const gameBoard = (() => {
     return newMat;
   }
 
-  function resetGrid() { // UNTESTED
+  function resetGrid() { // IMPURE, UNTESTED
     for (let r = 0; r < len; r += 1) {
       for (let c = 0; c < len; c += 1) {
         boardMat[r][c] = 0;
@@ -72,7 +72,7 @@ const gameBoard = (() => {
   pubSub.subscribe('gameEnd', resetGrid);
 
   return {
-    getGrid, pickGrid, getResult, resetGrid,
+    exposeGrid, pickGrid, getResult, resetGrid,
   };
 })();
 

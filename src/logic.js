@@ -1,20 +1,21 @@
-/* eslint-disable import/extensions */
-import gameBoard from './gameBoard.js';
-import pubSub from './pubSub.js';
+import pubSub from './pubSub';
 
 const logic = (() => {
   // Logic variables
   let isCrossTurn = true;
 
   // Method declaration
-  function afterMove() {
-    isCrossTurn = !isCrossTurn;
-    const res = gameBoard.getResult();
-    if (res) {
-      console.log(`%c${res} won!`, 'color: greenyellow;');
-      pubSub.publish('gameEnd', null);
-    }
+  function exposeIsCrossTurn() { // IMPURE, UNTESTED
+    return isCrossTurn;
   }
 
-  pubSub.subscribe('afterMove', afterMove);
+  function changeTurn() { // IMPURE, UNTESTED
+    isCrossTurn = !isCrossTurn;
+  }
+
+  pubSub.subscribe('afterMove', changeTurn);
+
+  return { exposeIsCrossTurn, changeTurn };
 })();
+
+export default logic;
