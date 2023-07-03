@@ -2,7 +2,7 @@ import gameBoard from '../src/gameBoard';
 
 const { getResult, pickGrid } = gameBoard;
 jest.mock('../src/pubSub', () => ({ // Mock pubSub module to empty implementation, not interested
-  emit: jest.fn(),
+  publish: jest.fn(),
   subscribe: jest.fn(),
 }));
 

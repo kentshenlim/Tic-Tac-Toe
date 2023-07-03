@@ -13,7 +13,7 @@ const logic = (() => {
     isCrossTurn = !isCrossTurn;
   }
 
-  pubSub.subscribe('afterMove', changeTurn);
+  pubSub.subscribe('gridPicked', changeTurn);
 
   return { exposeIsCrossTurn, changeTurn };
 })();

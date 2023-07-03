@@ -14,14 +14,17 @@ const gameBoard = (() => {
     return boardMat;
   }
 
-  function getResult(mat) { // PURE, PASSED
+  function getResult(mat) { // IMPURE, PASSED WITH MOCK PUBSUB
     for (let i = 0; i < len; i += 1) {
       // Row-wise
       const rowRef = mat[i][0];
       if (rowRef !== '.') {
         for (let c = 1; c < len; c += 1) {
           if (mat[i][c] !== rowRef) break;
-          if (c === len - 1) return rowRef;
+          if (c === len - 1) {
+            pubSub.publish('winnerDecided', rowRef);
+            return rowRef;
+          }
         }
       }
       // Column-wise
@@ -29,7 +32,10 @@ const gameBoard = (() => {
       if (colRef !== '.') {
         for (let r = 1; r < len; r += 1) {
           if (mat[r][i] !== colRef) break;
-          if (r === len - 1) return colRef;
+          if (r === len - 1) {
+            pubSub.publish('winnerDecided', colRef);
+            return colRef;
+          }
         }
       }
     }
@@ -37,13 +43,19 @@ const gameBoard = (() => {
     if (mat[0][0] !== '.') {
       for (let i = 1; i < len; i += 1) {
         if (mat[i][i] !== mat[0][0]) break;
-        if (i === len - 1) return mat[0][0];
+        if (i === len - 1) {
+          pubSub.publish('winnerDecided', mat[0][0]);
+          return mat[0][0];
+        }
       }
     }
     if (mat[0][len - 1] !== '.') {
       for (let i = 1; i < len; i += 1) {
         if (mat[i][len - 1 - i] !== mat[0][len - 1]) break;
-        if (i === len - 1) return mat[0][len - 1];
+        if (i === len - 1) {
+          pubSub.publish('winnerDecided', mat[0][len - 1]);
+          return mat[0][len - 1];
+        }
       }
     }
     return false;
@@ -57,7 +69,7 @@ const gameBoard = (() => {
       newMat[i] = mat[i].slice();
     }
     newMat[r][c] = symb;
-    pubSub.emit('gridPicked', [r, c]);
+    pubSub.publish('gridPicked', [r, c]);
     return newMat;
   }
 
