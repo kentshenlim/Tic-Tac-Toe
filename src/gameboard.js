@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import pubSub from './pubSub.js';
 
 const gameBoard = (() => {
