@@ -81,7 +81,7 @@ const gameBoard = (() => {
   }
 
   // Event subscription
-  pubSub.subscribe('gameEnd', resetGrid);
+  // None
 
   return {
     exposeGrid, pickGrid, getResult, resetGrid,

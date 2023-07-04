@@ -1,5 +1,6 @@
 import gameBoard from './gameBoard';
 import logic from './logic';
+import './style.css';
 
 gameBoard.exposeGrid();
 
