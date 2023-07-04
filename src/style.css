@@ -2,10 +2,10 @@
 * {
   box-sizing: border-box;
   /* Media queried */
-  --BIG-FONT-SIZE: 2rem;
-  --MID-FONT-SIZE: 1.5rem;
-  --SMALL-FONT-SIZE: 1rem;
-  --MIN-PLAYZONE-WIDTH: 400px;
+  --BIG-FONT-SIZE: 2.5rem;
+  --MID-FONT-SIZE: 2rem;
+  --SMALL-FONT-SIZE: 1.5rem;
+  --MIN-PLAYZONE-WIDTH: 500px;
   --PLAYZONE-NAV-HEIGHT-RATIO: 4;
 }
 
@@ -28,35 +28,49 @@ div.container {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   border: solid blue 3px;
 }
 
 nav.navbar {
-  font-size: var(--BIG-FONT-SIZE);
+  font-size: clamp(var(--SMALL-FONT-SIZE), 1.5vw, var(--MID-FONT-SIZE));
+  text-decoration: underline;
   width: 100%;
   margin-top: 5%;
+  padding: 0 5%;
   flex: 1 1 0;
   display: flex;
   align-items: center;
-  padding: 0 5%;
   border: solid green 3px;
 }
 
 nav.navbar > h1.title {
   margin-right: auto;
+  border: solid red 3px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 nav.navbar button {
-  width: 3rem;
-  height: 3rem;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
   padding: 0;
   margin: 0;
+  border: none;
+  background-color: transparent;
+}
+
+nav.navbar button:not(:last-child) {
+  margin-right: 3%;
+}
+
+nav.navbar button:hover {
+  background-color: green;
 }
 
 ion-icon {
-  font-size: 2.5rem;
-  border: solid red 3px;
+  font-size: clamp(var(--MID-FONT-SIZE), 4vw, var(--BIG-FONT-SIZE));
   margin: 0 auto;
 }
 
