@@ -28,7 +28,7 @@ body {
 }
 
 div.container {
-  width: max(40%, 450px);
+  width: max(40%, 600px);
   min-width: 450px;
   height: max(90%, 400px);
   margin: 0 auto;
