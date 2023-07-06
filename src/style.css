@@ -35,7 +35,7 @@ div.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: solid blue 3px;
+  background-color: #976817ab;
 }
 
 nav.navbar {
@@ -59,7 +59,8 @@ nav.navbar > h1.title {
   padding-left: 5%;
   width: 50%;
   font-family: belanosima;
-  color: #1d6647;
+  color: #10d884;
+  background-color: #88522b;
 }
 
 nav.navbar button {
@@ -79,7 +80,12 @@ nav.navbar button:not(:last-child) {
 }
 
 nav.navbar button:hover {
+  cursor: pointer;
   background-color: green;
+}
+
+nav.navbar button:active {
+  transform: scale(1.1);
 }
 
 div.playzone {
