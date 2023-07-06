@@ -91,6 +91,7 @@ div.playzone > .row {
   flex-direction: row;
   height: 30%;
   aspect-ratio: 3 / 1;
+  background: url(./img/wood3.png);
 }
 
 .cell {
@@ -135,4 +136,14 @@ span.rotate {
 
 .rotate.rot2 {
   transform: rotate(45deg);
+}
+
+.row:first-child {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.row:last-child {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
