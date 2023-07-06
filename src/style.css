@@ -95,7 +95,8 @@ div.playzone > .row {
 }
 
 .cell {
-  border: solid purple 3px;
+  border: solid rgb(122, 155, 73) 5px;
+  border-radius: 5px;
   flex: 1 1 auto;
 }
 
