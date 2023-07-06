@@ -1,7 +1,7 @@
 /* Some customized values */
 * {
   box-sizing: border-box;
-  /* Media queried */
+  /* Media queried */ /* Adjust later */
   --BIG-FONT-SIZE: 4rem;
   --MID-FONT-SIZE: 2.5rem;
   --SMALL-FONT-SIZE: 2rem;
@@ -23,10 +23,8 @@ body {
 }
 
 div.container {
-  max-width: min(50%, 600px);
-  min-width: var(--MIN-PLAYZONE-WIDTH);
-  height: 90%;
-  max-height: 700px;
+  width: max(40%, 400px);
+  height: max(90%, 400px);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -35,16 +33,19 @@ div.container {
 }
 
 nav.navbar {
-  font-size: clamp(var(--SMALL-FONT-SIZE), 4.5vmin, var(--BIG-FONT-SIZE));
+  font-size: clamp(16px, 4.5vmin, 48px);
   text-decoration: underline;
   width: 100%;
-  margin-top: 5%;
   padding: 0 5%;
-  flex: 1 1 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border: solid green 3px;
+}
+
+ion-icon {
+  font-size: clamp(16px, 5.5vmin, 48px);
+  margin: 0 auto;
 }
 
 nav.navbar > h1.title {
@@ -62,7 +63,9 @@ nav.navbar button {
   padding: 0;
   margin: 0;
   border: none;
-  background-color: transparent;
+  width: 10%;
+  border: solid purple 3px;
+  aspect-ratio: 1 / 1;
 }
 
 nav.navbar button:not(:last-child) {
@@ -73,12 +76,23 @@ nav.navbar button:hover {
   background-color: green;
 }
 
-ion-icon {
-  font-size: clamp(var(--MID-FONT-SIZE), 5vmin, var(--BIG-FONT-SIZE));
-  margin: 0 auto;
-}
-
 div.playzone {
   flex: var(--PLAYZONE-NAV-HEIGHT-RATIO) var(--PLAYZONE-NAV-HEIGHT-RATIO) 0;
   border: solid red 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.playzone > .row {
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  aspect-ratio: 3 / 1;
+}
+
+.cell {
+  border: solid purple 3px;
+  flex: 1 1 auto;
 }
