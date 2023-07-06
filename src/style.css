@@ -38,7 +38,6 @@ div.container {
 
 nav.navbar {
   font-size: clamp(16px, 4.5vmin, 48px);
-  text-decoration: underline;
   width: 100%;
   padding: 0 5%;
   display: flex;
@@ -67,7 +66,7 @@ nav.navbar button {
   margin: 0;
   border: none;
   width: 10%;
-  border: solid purple 3px;
+  border: solid black 3px;
   aspect-ratio: 1 / 1;
 }
 
@@ -124,4 +123,16 @@ div.playzone > .row {
   display: inline-block;
   position: absolute;
   width: 100%;
+}
+
+span.rotate {
+  display: inline-block;
+}
+
+.rotate.rot1 {
+  transform: rotate(-30deg);
+}
+
+.rotate.rot2 {
+  transform: rotate(45deg);
 }
