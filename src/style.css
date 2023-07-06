@@ -2,6 +2,7 @@
   font-family: belanosima;
   src: url(./font/Belanosima-SemiBold.ttf);
 }
+
 /* Some customized values */
 * {
   box-sizing: border-box;
@@ -112,4 +113,14 @@ div.playzone > .row {
 
 .cell:last-child {
   border-right: transparent;
+}
+
+.cell {
+  position: relative;
+}
+
+.cell > img {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
 }
