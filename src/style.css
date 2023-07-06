@@ -1,3 +1,7 @@
+@font-face {
+  font-family: belanosima;
+  src: url(./font/Belanosima-SemiBold.ttf);
+}
 /* Some customized values */
 * {
   box-sizing: border-box;
@@ -29,7 +33,6 @@ div.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: solid blue 3px;
 }
 
 nav.navbar {
@@ -40,7 +43,6 @@ nav.navbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid green 3px;
 }
 
 ion-icon {
@@ -50,10 +52,10 @@ ion-icon {
 
 nav.navbar > h1.title {
   margin-right: auto;
-  border: solid red 3px;
   margin-top: 0;
   margin-bottom: 0;
   width: 50%;
+  font-family: belanosima;
 }
 
 nav.navbar button {
@@ -78,7 +80,6 @@ nav.navbar button:hover {
 
 div.playzone {
   flex: var(--PLAYZONE-NAV-HEIGHT-RATIO) var(--PLAYZONE-NAV-HEIGHT-RATIO) 0;
-  border: solid red 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,4 +96,20 @@ div.playzone > .row {
 .cell {
   border: solid purple 3px;
   flex: 1 1 auto;
+}
+
+.row:first-child .cell {
+  border-top: transparent;
+}
+
+.row:last-child .cell {
+  border-bottom: transparent;
+}
+
+.cell:first-child {
+  border-left: transparent;
+}
+
+.cell:last-child {
+  border-right: transparent;
 }
