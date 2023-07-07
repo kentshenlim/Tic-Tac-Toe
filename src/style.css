@@ -11,6 +11,7 @@
   --PLAYZONE-NAV-HEIGHT-RATIO: 4;
   --PLAYZONE-HEIGHT: 28%;
   --BIG-FONT-SIZE: 4.5vmin;
+  --POPUP-FONT-SIZE: 4.5vmin;
 }
 
 @media only screen and (max-aspect-ratio: 3 / 4) {
@@ -20,6 +21,7 @@
     --PLAYZONE-NAV-HEIGHT-RATIO: 5;
     --PLAYZONE-HEIGHT: 25%;
     --BIG-FONT-SIZE: 3vmin;
+    --POPUP-FONT-SIZE: 5vmin;
   }
   div.container {
     max-height: 500px;
@@ -41,6 +43,7 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 div.container {
@@ -216,4 +219,80 @@ span.rotate {
 .row:last-child {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+/* Pop-up window ------------------------------------------------------------*/
+#overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none; /* Allow all events */
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all; /* Disable all events */
+}
+
+.form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0) translateX(-50%) translateY(-50%);
+  transform-origin: top left;
+  height: max(50vh, calc(--CONTAINER-MIN-HEIGHT));
+  width: max(30vw, calc(--CONTAINER-MIN-WIDTH));
+  background-color: rgba(193, 240, 106, 0.3);
+  border: solid var(--DEEP-YELLOW) 3px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px #17973d21;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+  padding: 2rem;
+  font-family: belanosima;
+  color: #054128;
+}
+
+.form-wrapper h2 {
+  text-decoration: underline;
+}
+
+.form-wrapper h2,
+.form-wrapper li {
+  font-size: var(--POPUP-FONT-SIZE);
+  font-weight: 100;
+}
+
+.icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  cursor: pointer;
+  z-index: 1;
+  background-color: #2bc1dbab;
+  color: #136341;
+}
+
+.icon-close:hover {
+  color: #2bc1dbab;
+  background-color: #136341;
+}
+
+.form-wrapper.active {
+  transform: scale(1) translateX(-50%) translateY(-50%);
 }
