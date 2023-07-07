@@ -167,6 +167,9 @@ div.playzone > .row {
   transform: scale(1.1);
 }
 
+.cell:active {
+  transform: scale(1.2);
+}
 .row:first-child .cell {
   border-top: transparent;
 }
