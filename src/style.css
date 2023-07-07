@@ -51,7 +51,8 @@ div.container {
   flex-direction: column;
   justify-content: center;
   background-color: #976817ab;
-  border-radius: 10px;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 130px black;
   /*
   Source
   https://css-tricks.com/how-to-create-wavy-shapes-patterns-in-css/
@@ -99,6 +100,14 @@ nav.navbar > h1.title {
   font-family: belanosima;
   color: #10d884;
   background-color: #88522b;
+  box-shadow: 0px 0px 30px #53321a;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 nav.navbar > button {
@@ -109,8 +118,10 @@ nav.navbar > button {
   margin: 0;
   border: none;
   width: 10%;
-  border: solid black 3px;
+  color: #136341;
+  background-color: #2bc1dbab;
   aspect-ratio: 1 / 1;
+  box-shadow: 0px 0px 15px rgba(11, 88, 102, 0.671);
 }
 
 nav.navbar button:not(:last-child) {
@@ -119,7 +130,8 @@ nav.navbar button:not(:last-child) {
 
 nav.navbar button:hover {
   cursor: pointer;
-  background-color: green;
+  background-color: #136341;
+  color: #2bc1dbab;
 }
 
 nav.navbar button:active {
@@ -148,6 +160,11 @@ div.playzone > .row {
   border: solid rgb(122, 155, 73) 5px;
   border-radius: 5px;
   flex: 1 1 auto;
+}
+
+.cell:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .row:first-child .cell {
