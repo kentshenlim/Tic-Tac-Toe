@@ -14,6 +14,12 @@ const ui = (() => {
     infoForm.classList.toggle('active');
   }
 
+  function closePopup(event) {
+    const { target } = event;
+    const parent = target.parentNode.parentNode;
+    parent.classList.remove('active');
+  }
+
   function reset() {
     const imgS = document.querySelectorAll('.cell > img');
     imgS.forEach((img) => {
@@ -41,15 +47,18 @@ const ui = (() => {
     toggleInfo();
   };
 
-  const infoCrossBtn = document.querySelector('#info-form>span.icon-close');
-  infoCrossBtn.onclick = () => {
-    toggleOverlay();
-    toggleInfo();
-  };
+  const infoCrossBtns = document.querySelectorAll('.form-wrapper>span.icon-close');
+  infoCrossBtns.forEach((btn) => {
+    const opt = btn; // Cannot modify function param directly
+    opt.onclick = (event) => {
+      toggleOverlay();
+      closePopup(event);
+    };
+  });
 
   const cells = document.querySelectorAll('.cell');
   cells.forEach((cell) => {
-    const opt = cell; // Cannot modify function param directly
+    const opt = cell;
     opt.onclick = () => {
       const r = opt.getAttribute('data-r');
       const c = opt.getAttribute('data-c');
