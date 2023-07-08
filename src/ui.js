@@ -1,9 +1,8 @@
 import pubSub from './pubSub';
+import xSymbol from './img/x.png';
+import oSymbol from './img/o.png';
 
 const ui = (() => {
-  // Cache DOM
-  const cells = document.querySelectorAll('.cell');
-
   // Method declaration
   function toggleOverlay() {
     const overlay = document.getElementById('overlay');
@@ -23,6 +22,11 @@ const ui = (() => {
   }
 
   // Bind events
+  const restartGameBtn = document.getElementById('restart-btn');
+  restartGameBtn.onclick = () => {
+    pubSub.publish('restartGame', null);
+  };
+
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
     toggleOverlay();
@@ -35,10 +39,15 @@ const ui = (() => {
     toggleInfo();
   };
 
-  const restartGameBtn = document.getElementById('restart-btn');
-  restartGameBtn.onclick = () => {
-    pubSub.publish('restartGame', null);
-  };
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach((cell) => {
+    const opt = cell; // Cannot modify function param directly
+    opt.onclick = () => {
+      const r = opt.getAttribute('data-r');
+      const c = opt.getAttribute('data-c');
+      pubSub.publish('gridPicked', [r, c]);
+    };
+  });
 
   // Event subscription
   pubSub.subscribe('restartGame', resetGrid);
