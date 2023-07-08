@@ -21,6 +21,14 @@ const ui = (() => {
     });
   }
 
+  function pickGrid([r, c, symbol]) {
+    const img = symbol === 'x' ? xSymbol : oSymbol;
+    const imgNode = document.createElement('img');
+    imgNode.src = img;
+    const cellNode = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`);
+    cellNode.appendChild(imgNode);
+  }
+
   // Bind events
   const restartGameBtn = document.getElementById('restart-btn');
   restartGameBtn.onclick = () => {
@@ -50,6 +58,7 @@ const ui = (() => {
   });
 
   // Event subscription
+  pubSub.subscribe('updateGridPicked', pickGrid);
   pubSub.subscribe('restartGame', resetGrid);
 })();
 

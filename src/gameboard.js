@@ -60,6 +60,12 @@ const gameBoard = (() => {
     return false;
   }
 
+  function processOrRejectGridPicked([r, c]) { // IMPURE, UNTESTED
+    if (boardMat[r][c] === '.') pubSub.publish('gridPickedAccepted', [r, c]);
+    else pubSub.publish('gridPickedRejected', null);
+    console.log('okay');
+  }
+
   function pickGrid(mat, r, c, symb) { // IMPURE, PASSED WITH MOCK PUBSUB
     if (r < 0 || r >= len || c < 0 || c >= len) return false;
     if (mat[r][c] !== '.') return false;
@@ -81,6 +87,7 @@ const gameBoard = (() => {
   }
 
   // Event subscription
+  pubSub.subscribe('gridPicked', processOrRejectGridPicked);
   pubSub.subscribe('restartGame', resetGrid);
 
   return {

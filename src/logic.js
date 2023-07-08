@@ -17,8 +17,14 @@ const logic = (() => {
     isCrossTurn = true;
   }
 
+  function resolveAcceptedGridPicked([r, c]) {
+    const symbol = isCrossTurn ? 'x' : 'o';
+    pubSub.publish('updateGridPicked', [r, c, symbol]);
+  }
+
   // Event subscription
-  pubSub.subscribe('gridPicked', changeTurn);
+  pubSub.subscribe('gridPickedAccepted', resolveAcceptedGridPicked);
+  pubSub.subscribe('updateGridPicked', changeTurn);
   pubSub.subscribe('restartGame', resetLogic);
 
   return { exposeIsCrossTurn, changeTurn };
