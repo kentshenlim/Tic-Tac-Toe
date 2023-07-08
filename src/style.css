@@ -5,7 +5,7 @@
 
 /* Some customized values */
 :root {
-  /* Media queried */ /* Adjust later */
+  /* Media queried */ /* Adjust here */
   --CONTAINER-MIN-WIDTH: 600px;
   --CONTAINER-MIN-HEIGHT: 400px;
   --PLAYZONE-NAV-HEIGHT-RATIO: 4;
@@ -88,6 +88,23 @@ nav.navbar {
   justify-content: center;
 }
 
+.cute-btn {
+  background-color: #2bc1dbab;
+  color: #136341;
+  box-shadow: 0px 0px 15px rgba(11, 88, 102, 0.671);
+  border: none;
+}
+
+.cute-btn:hover {
+  color: #2bc1dbab;
+  background-color: #136341;
+  cursor: pointer;
+}
+
+.cute-btn:active {
+  transform: scale(1.1);
+}
+
 ion-icon {
   font-size: clamp(16px, 5.5vmin, 48px);
   margin: 0 auto;
@@ -119,26 +136,12 @@ nav.navbar > button {
   border-radius: 50%;
   padding: 0;
   margin: 0;
-  border: none;
   width: 10%;
-  color: #136341;
-  background-color: #2bc1dbab;
   aspect-ratio: 1 / 1;
-  box-shadow: 0px 0px 15px rgba(11, 88, 102, 0.671);
 }
 
 nav.navbar button:not(:last-child) {
   margin-right: 3%;
-}
-
-nav.navbar button:hover {
-  cursor: pointer;
-  background-color: #136341;
-  color: #2bc1dbab;
-}
-
-nav.navbar button:active {
-  transform: scale(1.1);
 }
 
 div.playzone {
@@ -305,26 +308,31 @@ span.rotate {
   align-items: center;
 }
 
+#result-form > div > * {
+  flex: 1 1 auto;
+}
+
 #result-form .winner-img-wrapper {
   display: flex;
   width: 100%;
   height: 50%;
   flex-shrink: 1;
   border: solid red 3px;
+  justify-content: center;
 }
 
 #result-form .winner-img-wrapper > img {
   width: 40%;
-  flex: 1 1 auto;
+  flex: 1 1 1;
 }
 
 #result-form h2 {
   text-align: center;
   text-decoration: none;
+  font-size: var(--BIG-FONT-SIZE);
 }
 
 #play-again-btn {
-  background-color: #2bc1dbab;
-  color: #136341;
-  border: solid red 3px;
+  font-size: var(--BIG-FONT-SIZE);
+  border-radius: 1rem;
 }
