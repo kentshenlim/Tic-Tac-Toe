@@ -13,7 +13,7 @@ const logic = (() => {
     isCrossTurn = !isCrossTurn;
   }
 
-  function resetLogic() {
+  function reset() {
     isCrossTurn = true;
   }
 
@@ -23,7 +23,7 @@ const logic = (() => {
   }
 
   // Event subscription
-  pubSub.subscribe('restartGame', resetLogic);
+  pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('gridPickedAccepted', resolveAcceptedGridPicked);
   pubSub.subscribe('updateGridPicked', changeTurn);
 

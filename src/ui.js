@@ -14,7 +14,7 @@ const ui = (() => {
     infoForm.classList.toggle('active');
   }
 
-  function resetGrid() {
+  function reset() {
     const imgS = document.querySelectorAll('.cell > img');
     imgS.forEach((img) => {
       img.parentNode.removeChild(img);
@@ -58,7 +58,7 @@ const ui = (() => {
   });
 
   // Event subscription
-  pubSub.subscribe('restartGame', resetGrid);
+  pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('updateGridPicked', updateGrid);
 })();
 

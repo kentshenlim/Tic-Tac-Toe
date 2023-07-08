@@ -88,7 +88,7 @@ const gameBoard = (() => {
     decideIfEnded();
   }
 
-  function resetGrid() { // IMPURE, UNTESTED
+  function reset() { // IMPURE, UNTESTED
     for (let r = 0; r < len; r += 1) {
       for (let c = 0; c < len; c += 1) {
         boardMat[r][c] = '.';
@@ -97,7 +97,7 @@ const gameBoard = (() => {
   }
 
   // Event subscription
-  pubSub.subscribe('restartGame', resetGrid);
+  pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('gridPicked', processOrRejectGridPicked);
   pubSub.subscribe('updateGridPicked', updateGrid);
   pubSub.subscribe('gameEnded', (item) => {
@@ -105,7 +105,7 @@ const gameBoard = (() => {
   });
 
   return {
-    exposeGrid, pickGrid, getResult, resetGrid,
+    exposeGrid, pickGrid, getResult, reset,
   };
 })();
 
