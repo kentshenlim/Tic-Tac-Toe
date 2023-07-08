@@ -75,13 +75,13 @@ const gameBoard = (() => {
   function resetGrid() { // IMPURE, UNTESTED
     for (let r = 0; r < len; r += 1) {
       for (let c = 0; c < len; c += 1) {
-        boardMat[r][c] = 0;
+        boardMat[r][c] = '.';
       }
     }
   }
 
   // Event subscription
-  // None
+  pubSub.subscribe('restartGame', resetGrid);
 
   return {
     exposeGrid, pickGrid, getResult, resetGrid,

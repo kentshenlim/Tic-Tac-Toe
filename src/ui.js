@@ -15,6 +15,13 @@ const ui = (() => {
     infoForm.classList.toggle('active');
   }
 
+  function resetGrid() {
+    const imgS = document.querySelectorAll('.cell > img');
+    imgS.forEach((img) => {
+      img.parentNode.removeChild(img);
+    });
+  }
+
   // Bind events
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
@@ -27,6 +34,14 @@ const ui = (() => {
     toggleOverlay();
     toggleInfo();
   };
+
+  const restartGameBtn = document.getElementById('restart-btn');
+  restartGameBtn.onclick = () => {
+    pubSub.publish('restartGame', null);
+  };
+
+  // Event subscription
+  pubSub.subscribe('restartGame', resetGrid);
 })();
 
 export default ui;

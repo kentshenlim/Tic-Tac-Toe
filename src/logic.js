@@ -13,7 +13,13 @@ const logic = (() => {
     isCrossTurn = !isCrossTurn;
   }
 
+  function resetLogic() {
+    isCrossTurn = true;
+  }
+
+  // Event subscription
   pubSub.subscribe('gridPicked', changeTurn);
+  pubSub.subscribe('restartGame', resetLogic);
 
   return { exposeIsCrossTurn, changeTurn };
 })();
