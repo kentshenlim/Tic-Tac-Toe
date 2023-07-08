@@ -2,7 +2,7 @@ import pubSub from './pubSub';
 
 const gameBoard = (() => {
   const len = 3;
-  const boardMat = Array.from({ length: len }, () => new Array(len).fill('.'));
+  let boardMat = Array.from({ length: len }, () => new Array(len).fill('.'));
 
   // Method declaration
   function exposeGrid() { // IMPURE, UNTESTED
@@ -74,8 +74,13 @@ const gameBoard = (() => {
       newMat[i] = mat[i].slice();
     }
     newMat[r][c] = symb;
-    pubSub.publish('gridPicked', [r, c]);
     return newMat;
+  }
+
+  function updateGrid([r, c, symbol]) {
+    const updatedMatrix = pickGrid(boardMat, r, c, symbol);
+    console.log(updatedMatrix);
+    boardMat = updatedMatrix;
   }
 
   function resetGrid() { // IMPURE, UNTESTED
@@ -88,6 +93,7 @@ const gameBoard = (() => {
 
   // Event subscription
   pubSub.subscribe('gridPicked', processOrRejectGridPicked);
+  pubSub.subscribe('updateGridPicked', updateGrid);
   pubSub.subscribe('restartGame', resetGrid);
 
   return {

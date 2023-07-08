@@ -21,7 +21,7 @@ const ui = (() => {
     });
   }
 
-  function pickGrid([r, c, symbol]) {
+  function updateGrid([r, c, symbol]) {
     const img = symbol === 'x' ? xSymbol : oSymbol;
     const imgNode = document.createElement('img');
     imgNode.src = img;
@@ -58,7 +58,7 @@ const ui = (() => {
   });
 
   // Event subscription
-  pubSub.subscribe('updateGridPicked', pickGrid);
+  pubSub.subscribe('updateGridPicked', updateGrid);
   pubSub.subscribe('restartGame', resetGrid);
 })();
 
