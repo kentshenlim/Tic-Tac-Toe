@@ -41,6 +41,13 @@ const ui = (() => {
     pubSub.publish('restartGame', null);
   };
 
+  const playAgainBtn = document.getElementById('play-again-btn');
+  playAgainBtn.onclick = (event) => {
+    toggleOverlay();
+    closePopup(event);
+    pubSub.publish('restartGame', null);
+  };
+
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
     toggleOverlay();
