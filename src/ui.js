@@ -14,10 +14,20 @@ const ui = (() => {
     infoForm.classList.toggle('active');
   }
 
+  function toggleRes() {
+    const resForm = document.getElementById('result-form');
+    resForm.classList.toggle('active');
+  }
+
   function closePopup(event) {
     const { target } = event;
     const parent = target.parentNode.parentNode;
     parent.classList.remove('active');
+    if (parent.id === 'result-form') { // Need to clear result added
+      const resImgWrapper = document.getElementById('res-img-wrapper');
+      console.log(resImgWrapper);
+      while (resImgWrapper.firstChild) resImgWrapper.removeChild(resImgWrapper.lastChild);
+    }
   }
 
   function reset() {
@@ -33,6 +43,16 @@ const ui = (() => {
     imgNode.src = img;
     const cellNode = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`);
     cellNode.appendChild(imgNode);
+  }
+
+  function displayResult(winner) {
+    const img = winner === 'x' ? xSymbol : oSymbol;
+    const imgNode = document.createElement('img');
+    imgNode.src = img;
+    const resImgWrapper = document.getElementById('res-img-wrapper');
+    resImgWrapper.appendChild(imgNode);
+    toggleRes();
+    toggleOverlay();
   }
 
   // Bind events
@@ -76,6 +96,7 @@ const ui = (() => {
   // Event subscription
   pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('updateGridPicked', updateGrid);
+  pubSub.subscribe('gameEnded', displayResult);
 })();
 
 export default ui;
