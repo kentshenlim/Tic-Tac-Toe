@@ -58,8 +58,8 @@ const ui = (() => {
   });
 
   // Event subscription
-  pubSub.subscribe('updateGridPicked', updateGrid);
   pubSub.subscribe('restartGame', resetGrid);
+  pubSub.subscribe('updateGridPicked', updateGrid);
 })();
 
 export default ui;

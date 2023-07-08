@@ -63,7 +63,6 @@ const gameBoard = (() => {
   function processOrRejectGridPicked([r, c]) { // IMPURE, UNTESTED
     if (boardMat[r][c] === '.') pubSub.publish('gridPickedAccepted', [r, c]);
     else pubSub.publish('gridPickedRejected', null);
-    console.log('okay');
   }
 
   function pickGrid(mat, r, c, symb) { // IMPURE, PASSED WITH MOCK PUBSUB
@@ -77,10 +76,16 @@ const gameBoard = (() => {
     return newMat;
   }
 
-  function updateGrid([r, c, symbol]) {
+  function decideIfEnded() {
+    const res = getResult(boardMat);
+    if (res === false) return;
+    pubSub.publish('gameEnded', res);
+  }
+
+  function updateGrid([r, c, symbol]) { // IMPURE, UNTESTED
     const updatedMatrix = pickGrid(boardMat, r, c, symbol);
-    console.log(updatedMatrix);
     boardMat = updatedMatrix;
+    decideIfEnded();
   }
 
   function resetGrid() { // IMPURE, UNTESTED
@@ -92,9 +97,12 @@ const gameBoard = (() => {
   }
 
   // Event subscription
+  pubSub.subscribe('restartGame', resetGrid);
   pubSub.subscribe('gridPicked', processOrRejectGridPicked);
   pubSub.subscribe('updateGridPicked', updateGrid);
-  pubSub.subscribe('restartGame', resetGrid);
+  pubSub.subscribe('gameEnded', (item) => {
+    console.log(`${item} won`);
+  });
 
   return {
     exposeGrid, pickGrid, getResult, resetGrid,

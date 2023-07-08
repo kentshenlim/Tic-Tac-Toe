@@ -23,9 +23,9 @@ const logic = (() => {
   }
 
   // Event subscription
+  pubSub.subscribe('restartGame', resetLogic);
   pubSub.subscribe('gridPickedAccepted', resolveAcceptedGridPicked);
   pubSub.subscribe('updateGridPicked', changeTurn);
-  pubSub.subscribe('restartGame', resetLogic);
 
   return { exposeIsCrossTurn, changeTurn };
 })();
