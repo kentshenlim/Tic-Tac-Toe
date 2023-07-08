@@ -296,3 +296,35 @@ span.rotate {
 .form-wrapper.active {
   transform: scale(1) translateX(-50%) translateY(-50%);
 }
+
+#result-form > div {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#result-form .winner-img-wrapper {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  flex-shrink: 1;
+  border: solid red 3px;
+}
+
+#result-form .winner-img-wrapper > img {
+  width: 40%;
+  flex: 1 1 auto;
+}
+
+#result-form h2 {
+  text-align: center;
+  text-decoration: none;
+}
+
+#play-again-btn {
+  background-color: #2bc1dbab;
+  color: #136341;
+  border: solid red 3px;
+}

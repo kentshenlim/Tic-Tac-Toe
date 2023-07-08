@@ -5,7 +5,7 @@ const gameBoard = (() => {
   let boardMat = Array.from({ length: len }, () => new Array(len).fill('.'));
 
   // Method declaration
-  function exposeGrid() { // IMPURE, UNTESTED
+  function exposeGrid() { // IMPURE, UNTESTED, FOR DEBUGGING
     let outputStr = '';
     boardMat.forEach((row) => {
       outputStr = `${outputStr}${JSON.stringify(row)}\n`;
@@ -76,7 +76,7 @@ const gameBoard = (() => {
     return newMat;
   }
 
-  function decideIfEnded() {
+  function decideIfEnded() { // IMPURE, UNTESTED
     const res = getResult(boardMat);
     if (res === false) return;
     pubSub.publish('gameEnded', res);
