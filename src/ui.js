@@ -56,6 +56,24 @@ import oSymbol from './img/o.png';
     toggleElement('overlay');
   }
 
+  function debounce(fn, t) {
+    let timeId;
+    return function debounced(...args) {
+      clearTimeout(timeId);
+      timeId = setTimeout(() => {
+        fn(...args);
+      }, t);
+    };
+  }
+
+  function shakeCell([r, c]) {
+    const cellNode = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`);
+    cellNode.classList.add('shake');
+    debounce(() => {
+      cellNode.classList.remove('shake');
+    }, 1000)();
+  }
+
   // Cache DOM and bind events
   const restartGameBtn = document.getElementById('restart-btn');
   restartGameBtn.onclick = () => {
@@ -103,5 +121,6 @@ import oSymbol from './img/o.png';
   // Event subscription
   pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('updateGridPicked', updateGrid);
+  pubSub.subscribe('gridPickedRejected', shakeCell);
   pubSub.subscribe('gameEnded', displayResult);
 })();

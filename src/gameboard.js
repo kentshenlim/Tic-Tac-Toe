@@ -69,12 +69,8 @@ import pubSub from './pubSub';
     return true;
   }
 
-  function processOrRejectGridPicked([r, c]) { // IMPURE, UNTESTED
-    if (boardMat[r][c] === '.') pubSub.publish('gridPickedAccepted', [r, c]);
-    else pubSub.publish('gridPickedRejected', null);
-  }
-
-  function pickGrid(mat, r, c, symb) { // IMPURE, PASSED WITH MOCK PUBSUB
+  function pickGrid(mat, r, c, symb) {
+    // IMPURE, PASSED WITH MOCK PUBSUB
     if (r < 0 || r >= len || c < 0 || c >= len) return false;
     if (mat[r][c] !== '.') return false;
     const newMat = new Array(len);
@@ -83,6 +79,20 @@ import pubSub from './pubSub';
     }
     newMat[r][c] = symb;
     return newMat;
+  }
+
+  function reset() {
+    // IMPURE, UNTESTED
+    for (let r = 0; r < len; r += 1) {
+      for (let c = 0; c < len; c += 1) {
+        boardMat[r][c] = '.';
+      }
+    }
+  }
+
+  function processOrRejectGridPicked([r, c]) { // IMPURE, UNTESTED
+    if (boardMat[r][c] === '.') pubSub.publish('gridPickedAccepted', [r, c]);
+    else pubSub.publish('gridPickedRejected', [r, c]);
   }
 
   function decideIfEnded() { // IMPURE, UNTESTED
@@ -98,14 +108,6 @@ import pubSub from './pubSub';
     const updatedMatrix = pickGrid(boardMat, r, c, symbol);
     boardMat = updatedMatrix;
     decideIfEnded();
-  }
-
-  function reset() { // IMPURE, UNTESTED
-    for (let r = 0; r < len; r += 1) {
-      for (let c = 0; c < len; c += 1) {
-        boardMat[r][c] = '.';
-      }
-    }
   }
 
   // Event subscription

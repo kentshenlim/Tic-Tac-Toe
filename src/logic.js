@@ -18,13 +18,13 @@ import pubSub from './pubSub';
     isGameEnded = true;
   }
 
-  function processOrRejectGridPicked([r, c]) {
-    if (!isGameEnded) pubSub.publish('gridPickedBeforeEnd', [r, c]);
-  }
-
   function reset() {
     isCrossTurn = true;
     isGameEnded = false;
+  }
+
+  function processOrRejectGridPicked([r, c]) {
+    if (!isGameEnded) pubSub.publish('gridPickedBeforeEnd', [r, c]);
   }
 
   function resolveAcceptedGridPicked([r, c]) {
