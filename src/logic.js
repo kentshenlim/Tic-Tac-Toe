@@ -3,6 +3,7 @@ import pubSub from './pubSub';
 const logic = (() => {
   // Logic variable
   let isCrossTurn = true;
+  let isGameEnded = false;
 
   // Method declaration
   function exposeIsCrossTurn() { // IMPURE, UNTESTED
@@ -13,8 +14,17 @@ const logic = (() => {
     isCrossTurn = !isCrossTurn;
   }
 
+  function endGame() {
+    isGameEnded = true;
+  }
+
+  function processOrRejectGridPicked([r, c]) {
+    if (!isGameEnded) pubSub.publish('gridPickedBeforeEnd', [r, c]);
+  }
+
   function reset() {
     isCrossTurn = true;
+    isGameEnded = false;
   }
 
   function resolveAcceptedGridPicked([r, c]) {
@@ -24,8 +34,10 @@ const logic = (() => {
 
   // Event subscription
   pubSub.subscribe('restartGame', reset);
+  pubSub.subscribe('gridPicked', processOrRejectGridPicked);
   pubSub.subscribe('gridPickedAccepted', resolveAcceptedGridPicked);
   pubSub.subscribe('updateGridPicked', changeTurn);
+  pubSub.subscribe('gameEnded', endGame);
 
   return { exposeIsCrossTurn, changeTurn };
 })();

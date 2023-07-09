@@ -110,7 +110,7 @@ const gameBoard = (() => {
 
   // Event subscription
   pubSub.subscribe('restartGame', reset);
-  pubSub.subscribe('gridPicked', processOrRejectGridPicked);
+  pubSub.subscribe('gridPickedBeforeEnd', processOrRejectGridPicked);
   pubSub.subscribe('updateGridPicked', updateGrid);
 
   return {
