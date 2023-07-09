@@ -4,19 +4,10 @@ import oSymbol from './img/o.png';
 
 const ui = (() => {
   // Method declaration
-  function toggleOverlay() {
-    const overlay = document.getElementById('overlay');
-    overlay.classList.toggle('active');
-  }
 
-  function toggleInfo() {
-    const infoForm = document.getElementById('info-form');
-    infoForm.classList.toggle('active');
-  }
-
-  function toggleRes() {
-    const resForm = document.getElementById('result-form');
-    resForm.classList.toggle('active');
+  function toggleElement(id) {
+    const form = document.getElementById(id);
+    form.classList.toggle('active');
   }
 
   function closePopup(event) {
@@ -25,7 +16,6 @@ const ui = (() => {
     parent.classList.remove('active');
     if (parent.id === 'result-form') { // Need to clear result added
       const resImgWrapper = document.getElementById('res-img-wrapper');
-      console.log(resImgWrapper);
       while (resImgWrapper.firstChild) resImgWrapper.removeChild(resImgWrapper.lastChild);
     }
   }
@@ -51,8 +41,8 @@ const ui = (() => {
     imgNode.src = img;
     const resImgWrapper = document.getElementById('res-img-wrapper');
     resImgWrapper.appendChild(imgNode);
-    toggleRes();
-    toggleOverlay();
+    toggleElement('result-form');
+    toggleElement('overlay');
   }
 
   // Bind events
@@ -63,22 +53,22 @@ const ui = (() => {
 
   const playAgainBtn = document.getElementById('play-again-btn');
   playAgainBtn.onclick = (event) => {
-    toggleOverlay();
+    toggleElement('overlay');
     closePopup(event);
     pubSub.publish('restartGame', null);
   };
 
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
-    toggleOverlay();
-    toggleInfo();
+    toggleElement('overlay');
+    toggleElement('info-form');
   };
 
   const infoCrossBtns = document.querySelectorAll('.form-wrapper>span.icon-close');
   infoCrossBtns.forEach((btn) => {
     const opt = btn; // Cannot modify function param directly
     opt.onclick = (event) => {
-      toggleOverlay();
+      toggleElement('overlay');
       closePopup(event);
     };
   });
