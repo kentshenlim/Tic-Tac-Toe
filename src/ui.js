@@ -4,7 +4,6 @@ import oSymbol from './img/o.png';
 
 const ui = (() => {
   // Method declaration
-
   function toggleElement(id) {
     const form = document.getElementById(id);
     form.classList.toggle('active');
@@ -45,7 +44,7 @@ const ui = (() => {
     toggleElement('overlay');
   }
 
-  // Bind events
+  // Cache DOM and bind events
   const restartGameBtn = document.getElementById('restart-btn');
   restartGameBtn.onclick = () => {
     pubSub.publish('restartGame', null);

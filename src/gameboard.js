@@ -100,7 +100,6 @@ const gameBoard = (() => {
   pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('gridPicked', processOrRejectGridPicked);
   pubSub.subscribe('updateGridPicked', updateGrid);
-  pubSub.subscribe('gameEnded', reset);
 
   return {
     exposeGrid, pickGrid, getResult, reset,
