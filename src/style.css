@@ -325,13 +325,23 @@ span.rotate {
   flex: 1 1 1;
 }
 
-#result-form h2 {
+#play-again-btn {
+  font-size: var(--BIG-FONT-SIZE);
+  border-radius: 1rem;
+}
+
+#result-form h2,
+#mode-form h2:not(:first-child) {
   text-align: center;
   text-decoration: none;
   font-size: var(--BIG-FONT-SIZE);
 }
 
-#play-again-btn {
-  font-size: var(--BIG-FONT-SIZE);
-  border-radius: 1rem;
+#mode-form .img-container {
+  display: flex;
+  justify-content: center;
+}
+
+#mode-form img {
+  width: 40%;
 }

@@ -69,6 +69,12 @@ const ui = (() => {
     pubSub.publish('restartGame', null);
   };
 
+  const modeBtn = document.getElementById('mode-btn');
+  modeBtn.onclick = () => {
+    toggleElement('overlay');
+    toggleElement('mode-form');
+  };
+
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
     toggleElement('overlay');
