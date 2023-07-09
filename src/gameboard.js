@@ -1,17 +1,17 @@
 import pubSub from './pubSub';
 
-const gameBoard = (() => {
+(() => {
   const len = 3;
   let boardMat = Array.from({ length: len }, () => new Array(len).fill('.'));
 
   // Method declaration
-  function exposeGrid() { // IMPURE, UNTESTED, FOR DEBUGGING
-    let outputStr = '';
-    boardMat.forEach((row) => {
-      outputStr = `${outputStr}${JSON.stringify(row)}\n`;
-    });
-    return boardMat;
-  }
+  // function exposeGrid() { // IMPURE, UNTESTED, FOR DEBUGGING
+  //   let outputStr = '';
+  //   boardMat.forEach((row) => {
+  //     outputStr = `${outputStr}${JSON.stringify(row)}\n`;
+  //   });
+  //   return boardMat;
+  // }
 
   function getResult(mat) { // IMPURE, PASSED WITH MOCK PUBSUB
     for (let i = 0; i < len; i += 1) {
@@ -112,10 +112,4 @@ const gameBoard = (() => {
   pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('gridPickedBeforeEnd', processOrRejectGridPicked);
   pubSub.subscribe('updateGridPicked', updateGrid);
-
-  return {
-    exposeGrid, pickGrid, getResult, reset,
-  };
 })();
-
-export default gameBoard;

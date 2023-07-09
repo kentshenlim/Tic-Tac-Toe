@@ -2,7 +2,7 @@ import pubSub from './pubSub';
 import xSymbol from './img/x.png';
 import oSymbol from './img/o.png';
 
-const ui = (() => {
+(() => {
   // Method declaration
   function toggleElement(id) {
     const form = document.getElementById(id);
@@ -105,5 +105,3 @@ const ui = (() => {
   pubSub.subscribe('updateGridPicked', updateGrid);
   pubSub.subscribe('gameEnded', displayResult);
 })();
-
-export default ui;

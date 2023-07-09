@@ -1,14 +1,14 @@
 import pubSub from './pubSub';
 
-const logic = (() => {
+(() => {
   // Logic variable
   let isCrossTurn = true;
   let isGameEnded = false;
 
   // Method declaration
-  function exposeIsCrossTurn() { // IMPURE, UNTESTED
-    return isCrossTurn;
-  }
+  // function exposeIsCrossTurn() { // IMPURE, UNTESTED, FOE DEBUGGING
+  //   return isCrossTurn;
+  // }
 
   function changeTurn() { // IMPURE, UNTESTED
     isCrossTurn = !isCrossTurn;
@@ -38,8 +38,4 @@ const logic = (() => {
   pubSub.subscribe('gridPickedAccepted', resolveAcceptedGridPicked);
   pubSub.subscribe('updateGridPicked', changeTurn);
   pubSub.subscribe('gameEnded', endGame);
-
-  return { exposeIsCrossTurn, changeTurn };
 })();
-
-export default logic;
