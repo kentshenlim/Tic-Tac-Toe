@@ -35,11 +35,23 @@ const ui = (() => {
   }
 
   function displayResult(winner) {
-    const img = winner === 'x' ? xSymbol : oSymbol;
-    const imgNode = document.createElement('img');
-    imgNode.src = img;
     const resImgWrapper = document.getElementById('res-img-wrapper');
-    resImgWrapper.appendChild(imgNode);
+    const resultText = document.getElementById('result-text');
+    if (winner === 'draw') {
+      const imgNode1 = document.createElement('img');
+      const imgNode2 = document.createElement('img');
+      imgNode1.src = xSymbol;
+      imgNode2.src = oSymbol;
+      resImgWrapper.appendChild(imgNode1);
+      resImgWrapper.appendChild(imgNode2);
+      resultText.textContent = 'DRAW!';
+    } else {
+      const img = winner === 'x' ? xSymbol : oSymbol;
+      const imgNode = document.createElement('img');
+      imgNode.src = img;
+      resImgWrapper.appendChild(imgNode);
+      resultText.textContent = 'WINNER!';
+    }
     toggleElement('result-form');
     toggleElement('overlay');
   }

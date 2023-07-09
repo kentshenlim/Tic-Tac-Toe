@@ -1,7 +1,7 @@
 import pubSub from './pubSub';
 
 const logic = (() => {
-  // Logic variables
+  // Logic variable
   let isCrossTurn = true;
 
   // Method declaration
@@ -26,7 +26,6 @@ const logic = (() => {
   pubSub.subscribe('restartGame', reset);
   pubSub.subscribe('gridPickedAccepted', resolveAcceptedGridPicked);
   pubSub.subscribe('updateGridPicked', changeTurn);
-  pubSub.subscribe('gameEnded', reset);
 
   return { exposeIsCrossTurn, changeTurn };
 })();

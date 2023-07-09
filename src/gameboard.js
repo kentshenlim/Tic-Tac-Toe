@@ -60,6 +60,15 @@ const gameBoard = (() => {
     return false;
   }
 
+  function isFull(mat) { // PURE, UNTESTED
+    for (let r = 0; r < len; r += 1) {
+      for (let c = 0; c < len; c += 1) {
+        if (mat[r][c] === '.') return false;
+      }
+    }
+    return true;
+  }
+
   function processOrRejectGridPicked([r, c]) { // IMPURE, UNTESTED
     if (boardMat[r][c] === '.') pubSub.publish('gridPickedAccepted', [r, c]);
     else pubSub.publish('gridPickedRejected', null);
@@ -78,7 +87,10 @@ const gameBoard = (() => {
 
   function decideIfEnded() { // IMPURE, UNTESTED
     const res = getResult(boardMat);
-    if (res === false) return;
+    if (res === false) {
+      if (isFull(boardMat)) pubSub.publish('gameEnded', 'draw');
+      return;
+    }
     pubSub.publish('gameEnded', res);
   }
 
