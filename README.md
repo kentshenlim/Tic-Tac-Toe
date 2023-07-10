@@ -6,6 +6,11 @@
   JavaScript, serving as a practice exercise.
 - Tested with Jest
 
+### Credits
+
+- Virus figures from [BioRender](https://www.biorender.com/), a full-blown
+  website for drawing research-quality scientific image and illustration.
+
 ### Design
 
 - The app is built using three independent core modules, namely:
@@ -85,7 +90,3 @@
     pubSub.js->>ui.js: .updateGrid([r, c, symb])
     end
   ```
-
-```
-
-```
