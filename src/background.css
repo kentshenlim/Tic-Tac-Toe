@@ -4,6 +4,7 @@
   position: absolute;
   background-color: hsl(209.19deg 100% 21.76%);
   z-index: -1;
+  overflow: hidden;
 }
 
 .background-wrapper img {

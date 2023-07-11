@@ -10,6 +10,10 @@ import oImg from './img/o.png';
   background.classList.add('background-wrapper');
 
   // Method declaration
+  function getAspectRatio() {
+    return window.innerWidth / window.innerHeight;
+  }
+
   function createImgNode(imgSrc, classNameList) {
     const imgNode = document.createElement('img');
     imgNode.src = imgSrc;
@@ -29,17 +33,29 @@ import oImg from './img/o.png';
         node.style.width = '10%';
         node.style.position = 'absolute';
         node.style.top = `${verticalGap * i}%`;
-        node.style.left = `${horizontalGap * j}%`;
+        node.style.left = `${horizontalGap * (j + (i % 2 ? 0.5 : 0))}%`;
         background.appendChild(node);
       }
     }
   }
 
-  insertMotif(oImg, [], 3, 5);
+  function deleteMotif() {
+    while (background.lastChild) background.removeChild(background.firstChild);
+  }
 
-  //   const imgTest = document.createElement('img');
-  //   imgTest.src = oImg;
-  //   background.appendChild(createImgNode(oImg, []));
+  if (getAspectRatio() > 3 / 4) {
+    insertMotif(oImg, [], 4, 7);
+  } else {
+    insertMotif(oImg, [], 10, 4);
+  }
+  window.addEventListener('resize', () => {
+    deleteMotif();
+    if (getAspectRatio() > 3 / 4) {
+      insertMotif(oImg, [], 4, 7);
+    } else {
+      insertMotif(oImg, [], 10, 4);
+    }
+  });
 
   body.appendChild(background);
 })();
