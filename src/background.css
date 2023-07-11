@@ -9,20 +9,39 @@
 .background-wrapper img {
   width: 10%;
   position: absolute;
-  animation: oAnimation 1.5s infinite;
+  animation: oAnimation 3.5s infinite;
 }
 
 @keyframes oAnimation {
-  0%,
-  50% {
-    transform: rotate(-30deg);
+  0% {
+    transform: rotate(0deg) scale(1);
   }
 
-  70% {
-    transform: scale(1.2);
+  25% {
+    transform: rotate(30deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(30deg) scale(1.2);
+  }
+
+  75% {
+    transform: rotate(60deg) scale(1.2);
   }
 
   100% {
-    transform: scale(1);
+    transform: rotate(60deg) scale(1);
+  }
+}
+
+@keyframes xAnimation {
+  0%,
+  25% {
+    transform: rotate(-30deg);
+  }
+
+  50%,
+  75% {
+    transform: scale(1.2);
   }
 }
