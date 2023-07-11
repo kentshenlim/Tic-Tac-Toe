@@ -43,6 +43,17 @@ import oImg from './img/o.png';
     while (background.lastChild) background.removeChild(background.firstChild);
   }
 
+  function swapMotif() {
+    const nodes = document.querySelectorAll('.background-wrapper img');
+    const [newImg, newClass] = (nodes[0].classList.contains('xImg')) ? [oImg, 'oImg'] : [xImg, 'xImg'];
+    const oldClass = newClass === 'xImg' ? 'oImg' : 'xImg';
+    nodes.forEach((node) => {
+      const p = node;
+      p.classList.replace(oldClass, newClass);
+      p.src = newImg;
+    });
+  }
+
   if (getAspectRatio() > 3 / 4) {
     insertMotif(xImg, ['xImg'], 4, 7, '10%');
   } else {
@@ -59,4 +70,5 @@ import oImg from './img/o.png';
   });
 
   body.appendChild(background);
+  window.test = swapMotif;
 })();
