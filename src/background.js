@@ -23,14 +23,14 @@ import oImg from './img/o.png';
     return imgNode;
   }
 
-  function insertMotif(imgSrc, classNameList, r, c) {
+  function insertMotif(imgSrc, classNameList, r, c, width) {
     // Insert r by c
     const verticalGap = 100 / r;
     const horizontalGap = 100 / c;
     for (let i = 0; i < r; i += 1) {
       for (let j = 0; j < c; j += 1) {
         const node = createImgNode(imgSrc, classNameList);
-        node.style.width = '10%';
+        node.style.width = width;
         node.style.position = 'absolute';
         node.style.top = `${verticalGap * i}%`;
         node.style.left = `${horizontalGap * (j + (i % 2 ? 0.5 : 0))}%`;
@@ -44,16 +44,17 @@ import oImg from './img/o.png';
   }
 
   if (getAspectRatio() > 3 / 4) {
-    insertMotif(oImg, [], 4, 7);
+    insertMotif(xImg, ['xImg'], 4, 7, '10%');
   } else {
-    insertMotif(oImg, [], 10, 4);
+    insertMotif(xImg, ['xImg'], 10, 4, '20%');
   }
+
   window.addEventListener('resize', () => {
     deleteMotif();
     if (getAspectRatio() > 3 / 4) {
-      insertMotif(oImg, [], 4, 7);
+      insertMotif(xImg, ['xImg'], 4, 7, '10%');
     } else {
-      insertMotif(oImg, [], 10, 4);
+      insertMotif(xImg, ['xImg'], 10, 4, '20%');
     }
   });
 
