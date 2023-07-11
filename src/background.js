@@ -3,7 +3,7 @@ import xImg from './img/x.png';
 import oImg from './img/o.png';
 
 (() => {
-  // Cache DOM
+  // Cache and create DOM needed for background handling
   const body = document.querySelector('body');
 
   const background = document.createElement('div');
@@ -54,21 +54,31 @@ import oImg from './img/o.png';
     });
   }
 
+  function testSwap() {
+    const activeNodes = document.querySelectorAll('.background-wrapper img.active');
+    const inactiveNodes = document.querySelectorAll('.background-wrapper img:not(.active)');
+    console.log(activeNodes);
+    activeNodes.forEach((node) => { node.classList.remove('active'); });
+    inactiveNodes.forEach((node) => { node.classList.add('active'); });
+  }
+
   if (getAspectRatio() > 3 / 4) {
-    insertMotif(xImg, ['xImg'], 4, 7, '10%');
+    insertMotif(xImg, ['xImg', 'active'], 4, 7, '10%');
+    insertMotif(oImg, ['oImg'], 4, 7, '10%');
   } else {
-    insertMotif(xImg, ['xImg'], 10, 4, '20%');
+    insertMotif(xImg, ['xImg', 'active'], 10, 4, '20%');
   }
 
   window.addEventListener('resize', () => {
     deleteMotif();
     if (getAspectRatio() > 3 / 4) {
-      insertMotif(xImg, ['xImg'], 4, 7, '10%');
+      insertMotif(xImg, ['xImg', 'active'], 4, 7, '10%');
     } else {
-      insertMotif(xImg, ['xImg'], 10, 4, '20%');
+      insertMotif(xImg, ['xImg', 'active'], 10, 4, '20%');
     }
   });
 
   body.appendChild(background);
   window.test = swapMotif;
+  window.good = testSwap;
 })();

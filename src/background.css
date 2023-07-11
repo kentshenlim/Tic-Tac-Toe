@@ -11,6 +11,13 @@
   width: 10%;
   position: absolute;
   animation: xAnimation 3.5s infinite;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.background-wrapper img.active {
+  /* animation: fade-out 0.5s ease-in-out; */
+  opacity: 1;
 }
 
 .background-wrapper img.oImg {
@@ -19,6 +26,10 @@
 
 .background-wrapper img.xImg {
   animation: xAnimation 8s infinite;
+}
+
+.background-wrapper img.fade-in {
+  animation: fade-in 0.5s ease-in-out;
 }
 
 @keyframes oAnimation {
@@ -80,3 +91,23 @@
     transform: rotate(360deg) scale(1);
   }
 }
+
+/* @keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+} */
