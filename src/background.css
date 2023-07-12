@@ -10,7 +10,6 @@
 .background-wrapper img {
   width: 10%;
   position: absolute;
-  animation: xAnimation 3.5s infinite;
   transition: opacity 0.5s ease-in-out;
   opacity: 0;
 }
@@ -26,10 +25,6 @@
 
 .background-wrapper img.xImg {
   animation: xAnimation 8s infinite;
-}
-
-.background-wrapper img.fade-in {
-  animation: fade-in 0.5s ease-in-out;
 }
 
 @keyframes oAnimation {

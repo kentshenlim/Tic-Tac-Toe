@@ -24,7 +24,7 @@ import oImg from './img/o.png';
   }
 
   function insertMotif(imgSrc, classNameList, r, c, width) {
-    // Insert r by c
+    // Insert r by c motifs
     const verticalGap = 100 / r;
     const horizontalGap = 100 / c;
     for (let i = 0; i < r; i += 1) {
@@ -39,25 +39,27 @@ import oImg from './img/o.png';
     }
   }
 
-  function deleteMotif() {
-    while (background.lastChild) background.removeChild(background.firstChild);
+  function insertBothMotif(
+    activeImgSrc,
+    activeClassNameList,
+    inactiveImgSrc,
+    inactiveClassNameList,
+    r,
+    c,
+    width,
+  ) {
+    insertMotif(activeImgSrc, [...activeClassNameList, 'active'], r, c, width);
+    insertMotif(inactiveImgSrc, inactiveClassNameList, r, c, width);
   }
 
-  function swapMotif() {
-    const nodes = document.querySelectorAll('.background-wrapper img');
-    const [newImg, newClass] = (nodes[0].classList.contains('xImg')) ? [oImg, 'oImg'] : [xImg, 'xImg'];
-    const oldClass = newClass === 'xImg' ? 'oImg' : 'xImg';
-    nodes.forEach((node) => {
-      const p = node;
-      p.classList.replace(oldClass, newClass);
-      p.src = newImg;
-    });
+  function deleteMotif() {
+    while (background.lastChild) background.removeChild(background.firstChild);
   }
 
   function testSwap() {
     const activeNodes = document.querySelectorAll('.background-wrapper img.active');
     const inactiveNodes = document.querySelectorAll('.background-wrapper img:not(.active)');
-    console.log(activeNodes);
+    console.log(inactiveNodes);
     activeNodes.forEach((node) => { node.classList.remove('active'); });
     inactiveNodes.forEach((node) => { node.classList.add('active'); });
   }
@@ -67,18 +69,20 @@ import oImg from './img/o.png';
     insertMotif(oImg, ['oImg'], 4, 7, '10%');
   } else {
     insertMotif(xImg, ['xImg', 'active'], 10, 4, '20%');
+    insertMotif(oImg, ['oImg'], 10, 4, '20%');
   }
 
   window.addEventListener('resize', () => {
     deleteMotif();
     if (getAspectRatio() > 3 / 4) {
       insertMotif(xImg, ['xImg', 'active'], 4, 7, '10%');
+      insertMotif(oImg, ['oImg'], 4, 7, '10%');
     } else {
       insertMotif(xImg, ['xImg', 'active'], 10, 4, '20%');
+      insertMotif(oImg, ['oImg'], 10, 4, '20%');
     }
   });
 
   body.appendChild(background);
-  window.test = swapMotif;
   window.good = testSwap;
 })();
