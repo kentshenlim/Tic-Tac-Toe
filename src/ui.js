@@ -98,10 +98,15 @@ import oSymbol from './img/o.png';
   const muteBtn = document.getElementById('mute-btn');
   const muteBtnSymb = document.querySelector('#mute-btn>ion-icon');
   muteBtn.onclick = () => {
-    if (muteBtn.classList.contains('muted')) {
+    if (muteBtn.classList.contains('muted')) { // Unmute now
       muteBtnSymb.name = 'volume-mute-outline';
-    } else muteBtnSymb.name = 'musical-notes-outline';
-    muteBtn.classList.toggle('muted');
+      muteBtn.classList.remove('muted');
+      pubSub.publish('playJudgeTree', null);
+    } else {
+      muteBtnSymb.name = 'musical-notes-outline'; // Mute now
+      muteBtn.classList.add('muted');
+      pubSub.publish('stopJudgeTree', null);
+    }
   };
 
   const infoBtn = document.getElementById('info-btn');

@@ -2,6 +2,7 @@ import pubSub from './pubSub';
 import grass from './audioD/grass.wav';
 import error from './audioD/error.wav';
 import pop from './audioD/pop.wav';
+import judgeTree from './audioD/judgeTree.mp3';
 
 (() => {
   // Cache DOM
@@ -22,12 +23,27 @@ import pop from './audioD/pop.wav';
     p.play();
   }
 
+  function stopSound(audNode) {
+    const p = audNode;
+    p.pause();
+    p.currentTime = 0;
+  }
+
   const grassNode = createAudioNode(grass, 'grass');
   const errorNode = createAudioNode(error, 'error');
   const popNode = createAudioNode(pop, 'pop');
+  const judgeTreeNode = createAudioNode(judgeTree, 'judgeTree');
+  judgeTreeNode.volume = 0.4;
+  judgeTreeNode.loop = true;
+  document.querySelector('body').appendChild(judgeTreeNode);
+  playSound(judgeTreeNode);
 
   // Event subscription
   pubSub.subscribe('updateGridPicked', () => playSound(grassNode));
   pubSub.subscribe('gridPickedRejected', () => playSound(errorNode));
   pubSub.subscribe('popClicked', () => playSound(popNode));
+  pubSub.subscribe('playJudgeTree', () => {
+    playSound(judgeTreeNode);
+  });
+  pubSub.subscribe('stopJudgeTree', () => stopSound(judgeTreeNode));
 })();
