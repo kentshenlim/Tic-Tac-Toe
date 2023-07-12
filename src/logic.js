@@ -20,9 +20,9 @@ import pubSub from './pubSub';
   }
 
   function reset() {
+    if (!isCrossTurn) pubSub.publish('turnChanged', null);
     isCrossTurn = true;
     isGameEnded = false;
-    pubSub.publish('turnChanged', null);
   }
 
   function processOrRejectGridPicked([r, c]) {
