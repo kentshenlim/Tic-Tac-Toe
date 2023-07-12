@@ -12,6 +12,7 @@ import pubSub from './pubSub';
 
   function changeTurn() { // IMPURE, UNTESTED
     isCrossTurn = !isCrossTurn;
+    pubSub.publish('turnChanged', null);
   }
 
   function endGame() {
@@ -21,6 +22,7 @@ import pubSub from './pubSub';
   function reset() {
     isCrossTurn = true;
     isGameEnded = false;
+    pubSub.publish('turnChanged', null);
   }
 
   function processOrRejectGridPicked([r, c]) {

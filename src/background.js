@@ -1,3 +1,4 @@
+import pubSub from './pubSub';
 import './background.css';
 import xImg from './img/x.png';
 import oImg from './img/o.png';
@@ -70,14 +71,23 @@ import oImg from './img/o.png';
   }
 
   window.addEventListener('resize', () => {
+    // Need to get which motif is currently active first
+    const xIsActive = document.querySelector('.background-wrapper img.xImg').classList.contains('active');
     deleteMotif();
     if (getAspectRatio() > 3 / 4) {
-      insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 4, 7, '10%');
-    } else {
+      if (xIsActive) {
+        insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 4, 7, '10%');
+      } else {
+        insertBothMotif(oImg, ['oImg', 'active'], xImg, ['xImg'], 4, 7, '10%');
+      }
+    } else if (xIsActive) {
       insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 10, 4, '20%');
+    } else {
+      insertBothMotif(oImg, ['oImg', 'active'], xImg, ['xImg'], 10, 4, '20%');
     }
   });
 
   body.appendChild(background);
   window.good = swapMotif;
+  pubSub.subscribe('turnChanged', swapMotif);
 })();
