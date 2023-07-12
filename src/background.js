@@ -64,6 +64,7 @@ import oImg from './img/o.png';
     inactiveNodes.forEach((node) => { node.classList.add('active'); });
   }
 
+  // Init and bind events
   if (getAspectRatio() > 3 / 4) {
     insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 4, 7, '10%');
   } else {
@@ -88,6 +89,7 @@ import oImg from './img/o.png';
   });
 
   body.appendChild(background);
-  window.good = swapMotif;
+
+  // Event subscription
   pubSub.subscribe('turnChanged', swapMotif);
 })();
