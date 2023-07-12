@@ -28,9 +28,9 @@
         class Logic["logic.js"] {
             -boolean isCrossTurn
             -boolean isGameEnded
-            -changeTurn() null
             -endGame() null
-            -reset() null
+            +changeTurn() null e.turnChanged
+            +reset() null e.turnChanged
             +processOrRejectGridPicked([r, c]) e.gridPickedBeforeEnd
             +resolveAcceptedGridPicked([r, c]) e.updateGridPicked
         }
