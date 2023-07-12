@@ -56,33 +56,28 @@ import oImg from './img/o.png';
     while (background.lastChild) background.removeChild(background.firstChild);
   }
 
-  function testSwap() {
+  function swapMotif() {
     const activeNodes = document.querySelectorAll('.background-wrapper img.active');
     const inactiveNodes = document.querySelectorAll('.background-wrapper img:not(.active)');
-    console.log(inactiveNodes);
     activeNodes.forEach((node) => { node.classList.remove('active'); });
     inactiveNodes.forEach((node) => { node.classList.add('active'); });
   }
 
   if (getAspectRatio() > 3 / 4) {
-    insertMotif(xImg, ['xImg', 'active'], 4, 7, '10%');
-    insertMotif(oImg, ['oImg'], 4, 7, '10%');
+    insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 4, 7, '10%');
   } else {
-    insertMotif(xImg, ['xImg', 'active'], 10, 4, '20%');
-    insertMotif(oImg, ['oImg'], 10, 4, '20%');
+    insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 10, 4, '20%');
   }
 
   window.addEventListener('resize', () => {
     deleteMotif();
     if (getAspectRatio() > 3 / 4) {
-      insertMotif(xImg, ['xImg', 'active'], 4, 7, '10%');
-      insertMotif(oImg, ['oImg'], 4, 7, '10%');
+      insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 4, 7, '10%');
     } else {
-      insertMotif(xImg, ['xImg', 'active'], 10, 4, '20%');
-      insertMotif(oImg, ['oImg'], 10, 4, '20%');
+      insertBothMotif(xImg, ['xImg', 'active'], oImg, ['oImg'], 10, 4, '20%');
     }
   });
 
   body.appendChild(background);
-  window.good = testSwap;
+  window.good = swapMotif;
 })();
