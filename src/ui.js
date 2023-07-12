@@ -95,6 +95,15 @@ import oSymbol from './img/o.png';
     pubSub.publish('popClicked', null);
   };
 
+  const muteBtn = document.getElementById('mute-btn');
+  const muteBtnSymb = document.querySelector('#mute-btn>ion-icon');
+  muteBtn.onclick = () => {
+    if (muteBtn.classList.contains('muted')) {
+      muteBtnSymb.name = 'volume-mute-outline';
+    } else muteBtnSymb.name = 'musical-notes-outline';
+    muteBtn.classList.toggle('muted');
+  };
+
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
     toggleElement('overlay');

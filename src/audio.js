@@ -4,7 +4,8 @@ import error from './audioD/error.wav';
 import pop from './audioD/pop.wav';
 
 (() => {
-  const body = document.querySelector('body');
+  // Cache DOM
+  const muteBtn = document.getElementById('mute-btn');
 
   // Method declaration
   function createAudioNode(audioSrc, id) {
@@ -15,6 +16,7 @@ import pop from './audioD/pop.wav';
   }
 
   function playSound(audNode) {
+    if (muteBtn.classList.contains('muted')) return;
     const p = audNode;
     p.currentTime = 0;
     p.play();
