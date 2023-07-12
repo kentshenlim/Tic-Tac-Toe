@@ -78,6 +78,7 @@ import oSymbol from './img/o.png';
   const restartGameBtn = document.getElementById('restart-btn');
   restartGameBtn.onclick = () => {
     pubSub.publish('restartGame', null);
+    pubSub.publish('popClicked', null);
   };
 
   const playAgainBtn = document.getElementById('play-again-btn');
@@ -91,12 +92,14 @@ import oSymbol from './img/o.png';
   modeBtn.onclick = () => {
     toggleElement('overlay');
     toggleElement('mode-form');
+    pubSub.publish('popClicked', null);
   };
 
   const infoBtn = document.getElementById('info-btn');
   infoBtn.onclick = () => {
     toggleElement('overlay');
     toggleElement('info-form');
+    pubSub.publish('popClicked', null);
   };
 
   const infoCrossBtns = document.querySelectorAll('.form-wrapper>span.icon-close');
