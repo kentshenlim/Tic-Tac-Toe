@@ -29,6 +29,7 @@ import judgeTree from './audioD/judgeTree.mp3';
     p.currentTime = 0;
   }
 
+  // Init audio node
   const grassNode = createAudioNode(grass, 'grass');
   const errorNode = createAudioNode(error, 'error');
   const popNode = createAudioNode(pop, 'pop');
