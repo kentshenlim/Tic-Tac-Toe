@@ -38,6 +38,10 @@ const config = {
         type: 'asset',
         // loader: 'file-loader'
       },
+      {
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        type: 'asset/resource',
+      },
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
