@@ -2,7 +2,7 @@ import pubSub from './pubSub';
 import grass from './audioD/grass.wav';
 import error from './audioD/error.wav';
 import pop from './audioD/pop.wav';
-import judgeTree from './audioD/judgeTree.mp3';
+import judgeTree from './audioD/judgeTree2.mp3';
 
 (() => {
   // Cache DOM
