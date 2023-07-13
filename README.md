@@ -7,7 +7,8 @@
   JavaScript, serving as a practice exercise.
 - Tested with Jest
 - `dist` directory ready for deployment
-- Illustration
+- Illustration  
+  ![Illustration for demo run](./demo/demo.png)
 
 ## Credits
 
