@@ -6,7 +6,7 @@
 - The PVP Tic-tac-toe app is developed using the module pattern in Vanilla
   JavaScript, serving as a practice exercise.
 - Tested with Jest
-- `dist` directory ready for deployment
+- `docs` directory ready for deployment
 - Illustration  
   ![Illustration for demo run](./demo/demo.png)
 
