@@ -36,8 +36,6 @@ import judgeTree from './audioD/judgeTree.mp3';
   const judgeTreeNode = createAudioNode(judgeTree, 'judgeTree');
   judgeTreeNode.volume = 0.4;
   judgeTreeNode.loop = true;
-  document.querySelector('body').appendChild(judgeTreeNode);
-  playSound(judgeTreeNode);
 
   // Event subscription
   pubSub.subscribe('updateGridPicked', () => playSound(grassNode));
